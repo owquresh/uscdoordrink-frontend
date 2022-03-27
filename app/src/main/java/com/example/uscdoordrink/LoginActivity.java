@@ -45,12 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         buttonUserSignIn.setOnClickListener(new View.OnClickListener() {
-
-
-
-
             public void onClick(View view) {
-
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
@@ -67,17 +62,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected Map<String,String> getParams(){
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put("username","hello");
-                        params.put("password","jay");
-
+                        params.put("username",getUsername.getText().toString());
+                        params.put("password",getPassword.getText().toString());
                         return params;
                     }
-
                 };
                 RequestGlobal.getInstance(LoginActivity.this).getRequestQueue().add(stringRequest);
 
             }
-
         });
 
         buttonSignInBack.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, MainActivity.class)));
