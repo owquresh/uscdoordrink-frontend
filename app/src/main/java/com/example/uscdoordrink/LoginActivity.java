@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.uscdoodrink.request.RequestGlobal;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -22,6 +23,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     EditText getUsername, getPassword;
@@ -48,9 +51,33 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View view) {
 
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        }){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("username","hello");
+                        params.put("password","jay");
+
+                        return params;
+                    }
+
+                };
+                RequestGlobal.getInstance(LoginActivity.this).getRequestQueue().add(stringRequest);
 
             }
+
         });
 
         buttonSignInBack.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, MainActivity.class)));
