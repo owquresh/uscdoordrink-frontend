@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:text="Customer Data"
+        android:gravity="center"
+        tools:ignore="MissingConstraints" />
+
+    <TableLayout
+        android:layout_marginTop="30dp"
+        android:id="@+id/table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/table_row1"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:fontFamily="serif"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:text="Order"/>
+            <TextView
+                android:id="@+id/age"
+                android:textColor="#000"
+                android:fontFamily="serif"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="Caffine"/>
+            <TextView
+                android:textColor="#000"
+                android:id="@+id/position"
+                android:fontFamily="serif"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="Price"/>
+            <TextView
+                android:textColor="#000"
+                android:id="@+id/address"
+                android:fontFamily="serif"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="Location"/>
+
+        </TableRow>
+        <View
+            android:layout_height="3dip"
+            android:layout_width="match_parent"
+            android:background="#ff0000"/>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="147dp"
+        android:layout_height="48dp"
+        android:text="Checkout"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="25dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="122dp"
+        android:layout_height="28dp"
+        android:text="Order Summary"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="83dp" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make Purchase"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="398dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="394dp"
+        android:layout_height="229dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="147dp"
+        tools:ignore="MissingConstraints">
+
+        <TableLayout
+            android:id="@+id/table_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <TableRow
+                android:id="@+id/table_row1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="131dp"
+                    android:layout_height="33dp"
+                    android:text="Drink"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="32dp"
+                    tools:layout_editor_absoluteY="130dp" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="122dp"
+                    android:layout_height="28dp"
+                    android:text="Cost"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="205dp"
+                    tools:layout_editor_absoluteY="133dp" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/table_row2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="131dp"
+                    android:layout_height="33dp"
+                    android:text="Oatmilk Latte"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="32dp"
+                    tools:layout_editor_absoluteY="130dp" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="122dp"
+                    android:layout_height="28dp"
+                    android:text="$8.99"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="205dp"
+                    tools:layout_editor_absoluteY="133dp" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/table_row3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="131dp"
+                    android:layout_height="33dp"
+                    android:text="Total: "
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="32dp"
+                    tools:layout_editor_absoluteY="130dp" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="122dp"
+                    android:layout_height="28dp"
+                    android:text="$8.99"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="205dp"
+                    tools:layout_editor_absoluteY="133dp" />
+
+
+            </TableRow>
+
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,28 +12,14 @@ import com.android.volley.toolbox.Volley;
 public class RequestGlobal{
     private static RequestGlobal instance;
     private RequestQueue requestQueue;
-    private ImageLoader imageLoader;
     private static Context ctx;
 
     private RequestGlobal(Context context) {
         ctx = context;
         requestQueue = getRequestQueue();
 
-        imageLoader = new ImageLoader(requestQueue,
-                new ImageLoader.ImageCache() {
-                    private final LruCache<String, Bitmap>
-                            cache = new LruCache<String, Bitmap>(20);
 
-                    @Override
-                    public Bitmap getBitmap(String url) {
-                        return cache.get(url);
-                    }
 
-                    @Override
-                    public void putBitmap(String url, Bitmap bitmap) {
-                        cache.put(url, bitmap);
-                    }
-                });
     }
 
     public static synchronized RequestGlobal getInstance(Context context) {
@@ -56,8 +42,5 @@ public class RequestGlobal{
         getRequestQueue().add(req);
     }
 
-    public ImageLoader getImageLoader() {
-        return imageLoader;
-    }
 }
 
