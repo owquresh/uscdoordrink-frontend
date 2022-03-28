@@ -20,7 +20,7 @@ import com.example.uscdoordrink.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonSignIn,buttonRegister;
+    Button buttonSignIn, buttonRegister, buttonData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,13 @@ public class MainActivity extends AppCompatActivity {
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
+        buttonData = (Button) findViewById(R.id.buttonData);
+
+
         buttonSignIn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
 
         buttonRegister.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
+
+        buttonData.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, DataActivity.class)));
     }
 }
