@@ -80,6 +80,8 @@ public class RegisterActivity extends AppCompatActivity {
                         params.put("city",inputCity.getText().toString());
                         params.put("state",inputState.getText().toString());
                         params.put("postal",inputPostalCode.getText().toString());
+                        params.put("type", spinnerCustomer.getSelectedItem().toString());
+
                         return params;
                     }
                 };
