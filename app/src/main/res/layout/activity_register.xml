@@ -62,7 +62,7 @@
         android:id="@+id/spinnerCustomer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/input_background"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -78,7 +78,7 @@
         android:id="@+id/inputUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/input_background"
         android:ems="10"
         android:hint="Username"
@@ -92,7 +92,7 @@
         android:textColorHint="#FFFEFE"
         android:textColorLink="#AFB1B3"
         app:layout_constraintEnd_toEndOf="@+id/inputName"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/inputName"
         app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
@@ -100,7 +100,7 @@
         android:id="@+id/inputEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/input_background"
         android:ems="10"
         android:hint="email address"
@@ -122,7 +122,7 @@
         android:id="@+id/inputPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/input_background"
         android:ems="10"
         android:hint="********"
@@ -136,7 +136,7 @@
         android:textColorHint="#FFFFFF"
         android:textColorLink="#AFB1B3"
         app:layout_constraintEnd_toEndOf="@+id/inputEmail"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/inputEmail"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
@@ -173,7 +173,7 @@
         app:layout_constraintStart_toStartOf="@+id/inputState"
         app:layout_constraintTop_toBottomOf="@+id/inputState" />
 
-    <TextView
+    <EditText
         android:id="@+id/inputAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
         app:layout_constraintStart_toStartOf="@+id/inputPassword"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
-    <TextView
+    <EditText
         android:id="@+id/inputCity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
         app:layout_constraintStart_toStartOf="@+id/inputAddress"
         app:layout_constraintTop_toBottomOf="@+id/inputAddress" />
 
-    <TextView
+    <EditText
         android:id="@+id/inputState"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Need to intialize database here and check to pull data from SQL when buttonUserSignIn is clicked
 
-        String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Register";
+        String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Signin";
 
 
         buttonUserSignIn.setOnClickListener(new View.OnClickListener() {
