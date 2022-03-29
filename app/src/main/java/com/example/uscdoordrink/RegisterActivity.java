@@ -59,6 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+                                Intent registerIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(registerIntent);
 
                             }
                         },
