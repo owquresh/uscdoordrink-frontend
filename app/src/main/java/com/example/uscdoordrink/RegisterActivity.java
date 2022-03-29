@@ -35,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
         inputName = (EditText) findViewById(R.id.inputName);
-        inputUsername = (EditText) findViewById(R.id.inputUsername);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
         inputAddress = (EditText) findViewById(R.id.inputAddress);
