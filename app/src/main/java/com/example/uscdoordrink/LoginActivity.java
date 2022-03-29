@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Spinner isCustomerSpinner = (Spinner) findViewById(R.id.spinnerCustomer);
-        sesh = new Session(LoginActivity.this);
+        //sesh = new Session(LoginActivity.this);
         getPassword = (EditText) findViewById(R.id.getPassword);
         getEmail = (EditText) findViewById(R.id.getEmail);
         buttonUserSignIn = (Button) findViewById(R.id.buttonUserSignIn);
@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             public void onResponse(String response) {
                                 sesh.setLogin(true);
                                 sesh.setEmail(getEmail.toString());
+                                sesh.setType(spinnerCustomer.getSelectedItem().toString().toLowerCase());
                                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(loginIntent);
 

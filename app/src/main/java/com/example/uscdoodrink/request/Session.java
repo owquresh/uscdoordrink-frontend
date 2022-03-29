@@ -14,7 +14,7 @@ public class Session {
     }
 
     public void setLogin(boolean bool){
-        prefs.edit().putBoolean("login", true);
+        prefs.edit().putBoolean("login", true).commit();
     }
 
     public void setEmail(String email){
@@ -22,13 +22,20 @@ public class Session {
 
     }
 
+    public void setType(String type){
+        prefs.edit().putString("type", type).commit();
+    }
 
+    public String getType(){
+        return  prefs.getString("type","");
+
+    }
     public boolean getBoolean(){
 
         return prefs.getBoolean("login", false);
     }
     public String getEmail(){
-        String email = prefs.getString("email","");
-        return email;
+        return prefs.getString("email","");
+
     }
 }

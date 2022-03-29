@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.uscdoodrink.request.RequestGlobal;
+import com.example.uscdoodrink.request.Session;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -28,10 +29,12 @@ import java.text.CollationElementIterator;
 public class DataActivity extends AppCompatActivity {
     EditText getUsername, getPassword;
     Button buttonUserSignIn, buttonSignInBack;
+    Session sesh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
+        sesh = new Session(DataActivity.this);
         String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Data";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
