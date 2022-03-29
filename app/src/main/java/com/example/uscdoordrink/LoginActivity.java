@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.uscdoodrink.request.RequestGlobal;
+import com.example.uscdoodrink.request.Session;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -29,11 +30,12 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     EditText getUsername, getPassword;
     Button buttonUserSignIn, buttonSignInBack;
-    @Override
+
+    Session sesh;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        sesh = new Session(LoginActivity.this);
         getPassword = (EditText) findViewById(R.id.getPassword);
         getUsername = (EditText) findViewById(R.id.getUsername);
         buttonUserSignIn = (Button) findViewById(R.id.buttonUserSignIn);
@@ -50,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-
+                                sesh.setLogin(true);
+                                sesh.setEmail(getUsername.toString());
                             }
                         },
                         new Response.ErrorListener() {
@@ -62,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected Map<String,String> getParams(){
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put("username",getUsername.getText().toString());
+                        params.put("email",getUsername.getText().toString());
                         params.put("password",getPassword.getText().toString());
                         return params;
                     }
