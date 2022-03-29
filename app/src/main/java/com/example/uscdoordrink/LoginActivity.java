@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Need to intialize database here and check to pull data from SQL when buttonUserSignIn is clicked
 
-        String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Signin";
+        String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Login";
 
 
         buttonUserSignIn.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String,String> params = new HashMap<String, String>();
                         params.put("email",getUsername.getText().toString());
                         params.put("password",getPassword.getText().toString());
+                        params.put("type", spinnerCustomer.getSelectedItem().toString());
                         return params;
                     }
                 };
