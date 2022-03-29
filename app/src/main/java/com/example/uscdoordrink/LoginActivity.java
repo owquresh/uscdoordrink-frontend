@@ -1,7 +1,9 @@
 package com.example.uscdoordrink;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,7 +76,16 @@ public class LoginActivity extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
+                                AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
+                                alertDialog.setTitle("Alert");
+                                alertDialog.setMessage("Login not possible, try again");
+                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                alertDialog.show();
                             }
                         }){
                     @Override
