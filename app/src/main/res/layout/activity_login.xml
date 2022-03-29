@@ -38,13 +38,13 @@
             app:layout_constraintVertical_bias="0.100000024" />
 
         <EditText
-            android:id="@+id/getUsername"
+            android:id="@+id/getEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/input_background"
             android:ems="10"
-            android:hint="Username"
+            android:hint="email"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"

@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText getUsername, getPassword;
+    EditText getEmail, getPassword;
     Button buttonUserSignIn, buttonSignInBack;
     Spinner spinnerCustomer;
 
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         Spinner isCustomerSpinner = (Spinner) findViewById(R.id.spinnerCustomer);
         sesh = new Session(LoginActivity.this);
         getPassword = (EditText) findViewById(R.id.getPassword);
-        getUsername = (EditText) findViewById(R.id.getUsername);
+        getEmail = (EditText) findViewById(R.id.getEmail);
         buttonUserSignIn = (Button) findViewById(R.id.buttonUserSignIn);
         buttonSignInBack = (Button) findViewById(R.id.buttonSignInBack);
 
@@ -65,7 +65,10 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 sesh.setLogin(true);
-                                sesh.setEmail(getUsername.toString());
+                                sesh.setEmail(getEmail.toString());
+                                Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(loginIntent);
+
                             }
                         },
                         new Response.ErrorListener() {
@@ -77,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     protected Map<String,String> getParams(){
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put("email",getUsername.getText().toString());
+                        params.put("email",getEmail.getText().toString());
                         params.put("password",getPassword.getText().toString());
                         params.put("type", spinnerCustomer.getSelectedItem().toString());
                         return params;
