@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
         sesh = new Session(MainActivity.this);
 //        sesh.setEmail("omar@iv.life");
 //        sesh.setType("customer");
-        buttonData = (Button) findViewById(R.id.buttonData);
+
 
 
         buttonSignIn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
 
         buttonRegister.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
 
-        buttonData.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, DataActivity.class)));
+
     }
 }

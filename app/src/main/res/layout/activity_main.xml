@@ -49,14 +49,6 @@
             android:layout_weight="1"
             android:text="Register"></Button>
 
-        <Button
-            android:id="@+id/buttonData"
-            android:layout_width="49dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:text="Data"></Button>
-
 
     </LinearLayout>
 
