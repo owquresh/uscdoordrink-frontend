@@ -22,13 +22,16 @@ import com.example.uscdoordrink.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     Button buttonSignIn, buttonRegister, buttonData;
+    Session sesh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
-
+        sesh = new Session(MainActivity.this);
+//        sesh.setEmail("omar@iv.life");
+//        sesh.setType("customer");
         buttonData = (Button) findViewById(R.id.buttonData);
 
 
