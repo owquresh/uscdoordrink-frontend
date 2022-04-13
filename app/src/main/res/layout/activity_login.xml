@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/primaryDark"
     tools:context=".LoginActivity"
-    android:id="@+id/login">
+    android:id="@+id/login"
+    >
     <Button
         android:id="@+id/buttonSignInBack"
         android:text="Back"

@@ -62,6 +62,7 @@ public class MainActivityTest {
         onView(ViewMatchers.withId(R.id.login)).check(matches(isDisplayed()));
     }
 
+    
     @Test
     public void clickRegisterButton_opensRegisterPage() throws Exception {
         Espresso.onView(ViewMatchers.withId(R.id.buttonRegister)).perform(ViewActions.click());
