@@ -31,11 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         buttonRegisterBack = (Button) findViewById(R.id.buttonRegisterBack);
         Spinner isCustomerSpinner = (Spinner) findViewById(R.id.spinnerCustomer);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
-
         inputName = (EditText) findViewById(R.id.inputName);
         inputEmail = (EditText) findViewById(R.id.inputEmail);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
@@ -43,20 +41,17 @@ public class RegisterActivity extends AppCompatActivity {
         inputCity = (EditText) findViewById(R.id.inputCity);
         inputState = (EditText) findViewById(R.id.inputState);
         inputPostalCode = (EditText) findViewById(R.id.inputPostalCode);
-
         spinnerCustomer = (Spinner) findViewById(R.id.spinnerCustomer);
-
-
         ArrayAdapter<String> isCustomerAdapter = new ArrayAdapter<>(RegisterActivity.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.registerPageOptions));
         isCustomerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         isCustomerSpinner.setAdapter(isCustomerAdapter);
-
         String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Register";
         buttonRegisterBack.setOnClickListener(view -> startActivity(new Intent(RegisterActivity.this, MainActivity.class)));
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
@@ -99,7 +94,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
                 RequestGlobal.getInstance(RegisterActivity.this).getRequestQueue().add(stringRequest);
-
             }
         });
     }
