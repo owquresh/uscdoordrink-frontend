@@ -397,4 +397,64 @@ public class RegisterActivityTest {
                         isDisplayed()));
         frameLayout.check(matches(isDisplayed()));
     }
+
+    @Test
+    public void invalidEmailInRegisterDetails_ShowAlertDialog() throws Exception {
+        Espresso.onView(ViewMatchers.withId(R.id.inputName))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText("New User"));
+        Espresso.closeSoftKeyboard();
+
+        onView(withId(R.id.spinnerCustomer)).perform(click());
+        onView(withText("Shop")).perform(click());
+        Espresso.closeSoftKeyboard();
+
+        //https://www.baeldung.com/java-random-string
+        Random random = new Random();
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = ThreadLocalRandom.current().nextInt(3, 10 + 1);
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        Espresso.onView(ViewMatchers.withId(R.id.inputEmail))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText(generatedString));
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(ViewMatchers.withId(R.id.inputPassword))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText("password123"));
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(ViewMatchers.withId(R.id.inputAddress))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText("3131 McClintock Avenue"));
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(ViewMatchers.withId(R.id.inputCity))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText("Los Angeles"));
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(ViewMatchers.withId(R.id.inputState))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText("CA"));
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(ViewMatchers.withId(R.id.inputPostalCode))
+                .perform(ViewActions.clearText())
+                .perform(ViewActions.typeText("90007"));
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(ViewMatchers.withId(R.id.buttonRegister)).perform(click());
+
+        ViewInteraction frameLayout = onView(
+                allOf(withId(R.id.action_bar_root),
+                        isDisplayed()));
+        frameLayout.check(matches(isDisplayed()));
+    }
 }
