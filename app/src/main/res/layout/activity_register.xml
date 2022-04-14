@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/primaryDark"
     android:scrollbarSize="4dp"
-    tools:context=".RegisterActivity"
-    >
+    tools:context=".RegisterActivity">
     <Button
         android:id="@+id/buttonRegisterBack"
         android:text="Back"
