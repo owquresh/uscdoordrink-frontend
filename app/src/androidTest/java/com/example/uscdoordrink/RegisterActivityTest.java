@@ -287,5 +287,9 @@ public class RegisterActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.buttonRegister)).perform(click());
 
+        ViewInteraction frameLayout = onView(
+                allOf(withId(R.id.action_bar_root),
+                        isDisplayed()));
+        frameLayout.check(matches(isDisplayed()));
     }
 }
