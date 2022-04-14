@@ -19,6 +19,7 @@ import com.example.uscdoordrink.R;
 @LargeTest
 public class EspressoSignInTest {
 
+    @Rule
     public ActivityScenarioRule<LoginActivity> loginActivityRule =
             new ActivityScenarioRule<LoginActivity>(LoginActivity.class);
 //    public ActivityScenarioRule<DataActivity> dataActivityRule =

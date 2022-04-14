@@ -23,6 +23,7 @@ import android.view.ViewParent;
 
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -62,7 +63,7 @@ public class CorrectLoginTest {
                                         1),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("shop1@gmail"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("shop1@gmail.com"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.getPassword),
@@ -75,7 +76,7 @@ public class CorrectLoginTest {
         appCompatEditText2.perform(replaceText("123"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.getEmail), withText("shop1@gmail"),
+                allOf(withId(R.id.getEmail), withText("shop1@gmail.com"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.RelativeLayout")),
@@ -121,10 +122,7 @@ public class CorrectLoginTest {
                         isDisplayed()));
         materialButton2.perform(click());
 
-        ViewInteraction frameLayout = onView(
-                allOf(withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class))),
-                        isDisplayed()));
-        frameLayout.check(matches(isDisplayed()));
+        onView(ViewMatchers.withId(R.id.data)).check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(
