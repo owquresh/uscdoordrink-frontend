@@ -72,32 +72,29 @@ public class AddMenuItem extends AppCompatActivity{
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-//                        CollationElementIterator textView = null;
-//                        textView.setText("Response is: " + response.substring(0,500));
-                                JsonArray ar = new Gson().fromJson(response, JsonArray.class);
-                                JsonObject obj = ar.get(0).getAsJsonObject();
-                                //email.setText(obj.get("email").getAsString());
-                                //name.setText(obj.get("name").getAsString());
-
-                                //String formattedAddress = obj.get("address").getAsString()+ " "+ obj.get("city").getAsString() + ", " +obj.get("state").getAsString() + " " + obj.get("postal").getAsString();
-
-                                //address.setText(formattedAddress);
-                                //String bannerFormatted = sesh.getType().toUpperCase() + " " + "Data";
-                                //banner.setText(bannerFormatted);
+                                Intent loginIntent = new Intent(AddMenuItem.this, DataActivity.class);
+                                startActivity(loginIntent);
 
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //textView.setText("That didn't work!");
+                        AlertDialog alertDialog = new AlertDialog.Builder(AddMenuItem.this).create();
+                        alertDialog.setTitle("Alert");
+                        alertDialog.setMessage("Could not add menu items, please fill fields and try again!");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
                     }
                 }) {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<String, String>();
                         params.put("email", sesh.getEmail());
-                        params.put("type", sesh.getType());
                         params.put("name", itemName.getText().toString());
                         params.put("description", itemDescription.getText().toString());
                         params.put("caffine", itemCaffine.getText().toString());
