@@ -57,6 +57,7 @@ public class DataActivity extends AppCompatActivity {
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonEditAddress = (Button) findViewById(R.id.buttonEditAddress);
 
+        buttonEditAddress.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, EditAddressActivity.class)));
         buttonLogout.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, LoginActivity.class)));
         buttonAddMenuItem.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, AddMenuItem.class)));
 
@@ -66,6 +67,7 @@ public class DataActivity extends AppCompatActivity {
 
         Log.d("session1", sesh.getEmail().toString());
         String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Data";
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
