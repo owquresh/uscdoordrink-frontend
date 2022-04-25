@@ -12,127 +12,137 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"
         android:gravity="center"
-        android:text="Customer Data"
+        android:text="Customer Information"
         android:textColor="#000"
         android:textSize="20sp"
         tools:ignore="MissingConstraints" />
 
+
     <TableLayout
-        android:layout_marginTop="30dp"
         android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banner_text"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
 
         <TableRow
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             android:id="@+id/table_row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/name"
-                android:fontFamily="serif"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:text="Order"/>
-            <TextView
-                android:id="@+id/age"
-                android:textColor="#000"
-                android:fontFamily="serif"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:text="Caffine"/>
-            <TextView
-                android:textColor="#000"
-                android:id="@+id/position"
                 android:fontFamily="serif"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="Price"/>
+                android:text="Name:"
+                android:textStyle="bold"
+                android:textColor="#000" />
             <TextView
-                android:textColor="#000"
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="serif"
+                android:textColor="#000" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/table_row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:text="Email: "
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="serif"
+                android:textColor="#000" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/table_row3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
+            <TextView
                 android:id="@+id/address"
-                android:fontFamily="serif"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Location"/>
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:text="Address:"
+                android:textColor="#000" />
+            <TextView
+                android:id="@+id/user_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="serif"
+                android:textColor="#000" />
 
         </TableRow>
         <View
-            android:layout_height="3dip"
             android:layout_width="match_parent"
-            android:background="#ff0000"/>
+            android:layout_height="3dip"
+            android:background="#ff0000" />
     </TableLayout>
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="57dp"
-        android:layout_height="18dp"
-        android:text="Name"
+    <Button
+        android:id="@+id/buttonEditAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Addresss"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17000002" />
+        app:layout_constraintTop_toBottomOf="@+id/banner_text"
+        app:layout_constraintVertical_bias="0.391" />
 
-    <TextView
-        android:id="@+id/user_name"
+    <Button
+        android:id="@+id/buttonAddMenuItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textView18"
-        app:layout_constraintStart_toStartOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name" />
-
-    <TextView
-        android:id="@+id/user_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textView21"
-        app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="Add Menu Item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17000002" />
+        app:layout_constraintTop_toBottomOf="@+id/banner_text" />
 
-    <TextView
-        android:id="@+id/user_email"
+    <Button
+        android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintStart_toStartOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banner_text"
+        app:layout_constraintVertical_bias="0.661" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

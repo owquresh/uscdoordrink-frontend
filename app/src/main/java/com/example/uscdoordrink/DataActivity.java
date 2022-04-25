@@ -41,8 +41,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class DataActivity extends AppCompatActivity {
-    EditText getUsername, getPassword;
-    Button buttonUserSignIn, buttonSignInBack;
+    Button buttonLogout, buttonEditAddress, buttonAddMenuItem;
     TextView name, email, address, banner;
     Session sesh;
     @Override
@@ -54,6 +53,16 @@ public class DataActivity extends AppCompatActivity {
         email = (TextView) findViewById(R.id.user_email);
         address = (TextView) findViewById(R.id.user_address);
         banner = (TextView) findViewById(R.id.banner_text);
+        buttonAddMenuItem = (Button) findViewById(R.id.buttonAddMenuItem);
+        buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        buttonEditAddress = (Button) findViewById(R.id.buttonEditAddress);
+
+        buttonLogout.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, LoginActivity.class)));
+        buttonAddMenuItem.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, AddMenuItem.class)));
+
+        if(sesh.getType().equals("customer")){
+            buttonAddMenuItem.setVisibility(View.GONE);
+        }
 
         Log.d("session1", sesh.getEmail().toString());
         String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Data";
@@ -74,7 +83,7 @@ public class DataActivity extends AppCompatActivity {
                                 obj.get("state").getAsString() + " " + obj.get("postal").getAsString();
 
                         address.setText(formattedAddress);
-                        String bannerFormatted = sesh.getType().toUpperCase() + " " + "Data";
+                        String bannerFormatted = sesh.getType().toUpperCase() + " " + "DATA";
                         banner.setText(bannerFormatted);
 
                     }
