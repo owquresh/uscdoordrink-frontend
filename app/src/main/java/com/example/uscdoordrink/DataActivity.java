@@ -4,40 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.uscdoodrink.request.RequestGlobal;
 import com.example.uscdoodrink.request.Session;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.text.CollationElementIterator;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class DataActivity extends AppCompatActivity {

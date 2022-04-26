@@ -25,6 +25,7 @@ public class EditAddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_address);
 
+        sesh = new Session(EditAddressActivity.this);
         buttonBack = findViewById(R.id.buttonEditAddressBack);
         buttonSave = findViewById(R.id.buttonSave);
         address = findViewById(R.id.inputAddress1);
@@ -34,8 +35,9 @@ public class EditAddressActivity extends AppCompatActivity {
 
         String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/EditAddress";
         buttonBack.setOnClickListener(view -> startActivity(new Intent(EditAddressActivity.this, DataActivity.class)));
+
         buttonSave.setOnClickListener(view -> {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
                     response -> {
                         Intent registerIntent = new Intent(EditAddressActivity.this, DataActivity.class);
                         startActivity(registerIntent);
