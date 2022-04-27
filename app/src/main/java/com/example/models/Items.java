@@ -5,10 +5,10 @@ public class Items {
     private String itemName;
     private String description;
     private double itemPrice;
-    private int caffeineAmt;
+    private double caffeineAmt;
 
 
-    public Items(int itemID, int shopID, String itemName, String description, int caffeineAmt, double itemPrice){
+    public Items(int itemID, int shopID, String itemName, String description, double caffeineAmt, double itemPrice){
         this.itemID = itemID;
         this.shopID = shopID;
         this.caffeineAmt = caffeineAmt;
@@ -32,11 +32,11 @@ public class Items {
 
     public int getShopID () { return this.shopID; }
 
-    public int getCaffeineAmt() {
+    public double getCaffeineAmt() {
         return caffeineAmt;
     }
 
-    public void setCaffeineAmt(int caffeineAmt) {
+    public void setCaffeineAmt(double caffeineAmt) {
         this.caffeineAmt = caffeineAmt;
     }
 
