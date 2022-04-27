@@ -39,6 +39,12 @@
             android:name=".EditAddressActivity"
             android:exported="false" />
         <activity
+            android:name=".DynamicMenu"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddMenuItem"
             android:exported="false" />
         <activity
