@@ -58,8 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         //Need to intialize database here and check to pull data from SQL when buttonUserSignIn is clicked
 
         String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Login";
-
-
         buttonUserSignIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -69,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 sesh.setLogin(true);
                                 sesh.setEmail(getEmail.getText().toString());
                                 sesh.setType(spinnerCustomer.getSelectedItem().toString().toLowerCase());
-                                Intent loginIntent = new Intent(LoginActivity.this, MapsActivity.class);
+                                Intent loginIntent = new Intent(LoginActivity.this, DataActivity.class);
                                 startActivity(loginIntent);
 
                             }

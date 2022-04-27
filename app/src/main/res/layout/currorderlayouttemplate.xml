@@ -6,39 +6,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="65dp"
-        app:layout_editor_absoluteY="16dp">
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryLight"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp">
 
         <TextView
             android:id="@+id/orderNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="22sp"/>
+            android:text="orderNumber"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/orderAddress"
-            android:layout_below="@+id/orderNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/orderNumber"
+            android:text="OrderAddress"
             android:textColor="@color/black"
-            android:textSize="22sp"/>
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/orderTime"
-            android:layout_toRightOf="@+id/orderNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:layout_toRightOf="@+id/orderNumber"
+            android:text="OrderTime"
             android:textColor="@color/black"
-            android:textSize="22sp"/>
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/orderItem"
-            android:layout_below="@+id/orderTime"
-            android:layout_toRightOf="@+id/orderAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/orderAddress"
+            android:layout_marginTop="1dp"
+            android:text="orderItem"
             android:textColor="@color/black"
-            android:textSize="22sp"/>
+            android:textSize="15sp" />
+
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
