@@ -22,7 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataActivity extends AppCompatActivity {
-    Button buttonLogout, buttonEditAddress, buttonAddMenuItem;
+    // Profile Page
+    Button buttonLogout, buttonEditAddress, buttonAddMenuItem, buttonCurrOrder;
     TextView name, email, address, banner;
     Session sesh;
     @Override
@@ -30,20 +31,23 @@ public class DataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
         sesh = new Session(DataActivity.this);
-        name = (TextView) findViewById(R.id.user_name);
-        email = (TextView) findViewById(R.id.user_email);
-        address = (TextView) findViewById(R.id.user_address);
-        banner = (TextView) findViewById(R.id.banner_text);
-        buttonAddMenuItem = (Button) findViewById(R.id.buttonAddMenuItem);
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
-        buttonEditAddress = (Button) findViewById(R.id.buttonEditAddress);
+        name = findViewById(R.id.user_name);
+        email = findViewById(R.id.user_email);
+        address = findViewById(R.id.user_address);
+        banner =  findViewById(R.id.banner_text);
+        buttonAddMenuItem = findViewById(R.id.buttonAddMenuItem);
+        buttonLogout = findViewById(R.id.buttonLogout);
+        buttonEditAddress = findViewById(R.id.buttonEditAddress);
+        buttonCurrOrder = findViewById(R.id.buttonCurrOrder);
 
+        buttonCurrOrder.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, ShopCurrOrdersActivity.class)));
         buttonEditAddress.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, EditAddressActivity.class)));
         buttonLogout.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, LoginActivity.class)));
         buttonAddMenuItem.setOnClickListener(view -> startActivity(new Intent(DataActivity.this, AddMenuItem.class)));
 
         if(sesh.getType().equals("customer")){
             buttonAddMenuItem.setVisibility(View.GONE);
+            buttonCurrOrder.setVisibility(View.GONE);
         }
 
         Log.d("session1", sesh.getEmail().toString());

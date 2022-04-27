@@ -118,10 +118,10 @@
         android:text="Edit Addresss"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner_text"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.283" />
 
     <Button
         android:id="@+id/buttonAddMenuItem"
@@ -130,8 +130,10 @@
         android:text="Add Menu Item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner_text" />
+        app:layout_constraintTop_toBottomOf="@+id/banner_text"
+        app:layout_constraintVertical_bias="0.58" />
 
     <Button
         android:id="@+id/buttonLogout"
@@ -140,9 +142,19 @@
         android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner_text"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.952" />
+
+    <Button
+        android:id="@+id/buttonCurrOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See Current Orders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banner_text"
+        app:layout_constraintVertical_bias="0.667" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

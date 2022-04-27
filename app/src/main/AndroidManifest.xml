@@ -42,7 +42,7 @@
             android:name=".AddMenuItem"
             android:exported="false" />
         <activity
-            android:name=".ShopMenuActivity"
+            android:name=".ShopCurrOrdersActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
