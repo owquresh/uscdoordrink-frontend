@@ -30,6 +30,7 @@ public class DynamicMenu extends AppCompatActivity {
     Items curr;
     List<Map<String, String>> menuList = new ArrayList<Map<String, String>>();
 
+
     private SimpleAdapter simpleAdapter;
 
     @Override
@@ -40,8 +41,12 @@ public class DynamicMenu extends AppCompatActivity {
         setContentView(R.layout.activity_dynamicmenu);
 
 
+        Bundle extras = getIntent().getExtras();
+        String id = extras.getString("id");
+        Log.d("log=window", "onCreate: " + id);
+
         //Log.d("session1", sesh.getEmail().toString());
-        String url = "http://10.0.2.2:8082/USCDoorDrinkBackend/Menu?shopID=1";
+        String url = "http://10.0.2.2:8080/USCDoorDrinkBackend/Menu";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -90,8 +95,7 @@ public class DynamicMenu extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("email",sesh.getEmail());
-                params.put("type",sesh.getType());
+                params.put("shopID",id);
                 return params;
             }
 

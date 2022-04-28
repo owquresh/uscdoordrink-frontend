@@ -73,9 +73,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng currLoc;
     LatLng dest;
     Marker currMarker;
-    private Button[] btn = new Button[4];
+    private Button[] btn = new Button[5];
     private Button btn_unfocus;
-    private int[] btn_id = {R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3};
+    private int[] btn_id = {R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4};
     TextView shopName;
     TextView shopDistance;
     TextView shopDuration;
@@ -130,6 +130,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             clearRoutes();
                             travelMode.setText(travelMode.getText().toString() + ": Cleared");
                             break;
+                        case R.id.btn4:
+                            Intent dataIntent = new Intent(MapsActivity.this, DataActivity.class);
+                            startActivity(dataIntent);
 
                     }
                 }
@@ -192,6 +195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Nullable
             @Override
+
             public View getInfoContents(@NonNull Marker marker) {
                 View v = getLayoutInflater().inflate(R.layout.info_window,null);
                 TextView name = v.findViewById(R.id.name);
@@ -211,6 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
@@ -224,6 +229,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","car",currLoc,lat, lng,marker);
 
                 return false;
+            }
+        });
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(@NonNull Marker marker) {
+                if(marker.getTitle().equals("Current Location")){
+                    Log.d("info=window","drag");
+                }else{
+                    Intent shopIntent = new Intent(MapsActivity.this, DynamicMenu.class);
+                    Log.d("info=window",markerMap.get(marker).getId()+ "");
+                    shopIntent.putExtra("id",markerMap.get(marker).getId());
+                    startActivity(shopIntent);
+                    Log.d("info=window","drag");
+                }
             }
         });
 

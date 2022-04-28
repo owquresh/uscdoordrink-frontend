@@ -79,5 +79,12 @@
             android:backgroundTint="@color/quantum_bluegrey50"
             android:layout_gravity="center_vertical" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:id="@+id/btn4"
+            android:backgroundTint="@color/quantum_bluegrey50"
+            android:layout_gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>
