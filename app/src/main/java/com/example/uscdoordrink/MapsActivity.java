@@ -79,7 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView shopName;
     TextView shopDistance;
     TextView shopDuration;
-
+    TextView travelMode;
 
 
     ScheduledExecutorService backgroundExecutor;
@@ -92,6 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         shopName = (TextView) findViewById(R.id.shopName);
         shopDistance = (TextView) findViewById(R.id.shopDistance);
         shopDuration = (TextView) findViewById(R.id.shopDuration);
+        travelMode = (TextView) findViewById(R.id.mode);
 
         shops = new ArrayList<Shop>();
         shopMap = new HashMap<>();
@@ -111,31 +112,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onClick(View view) {
                     switch (view.getId()){
                         case R.id.btn0:
-                            for(Polyline line: polyLines){
-                                line.remove();
-                            }
-                            polyLines.clear();
+                            clearRoutes();
                             grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","walk",currLoc,dest.latitude,dest.longitude,currMarker);
+                            travelMode.setText("Walking");
                             break;
                         case R.id.btn1:
-                            for(Polyline line: polyLines){
-                                line.remove();
-                            }
-                            polyLines.clear();
+                            clearRoutes();
                             grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","bike",currLoc,dest.latitude,dest.longitude,currMarker);
+                            travelMode.setText("Biking");
                             break;
                         case R.id.btn2:
-                            for(Polyline line: polyLines){
-                                line.remove();
-                            }
-                            polyLines.clear();
+                            clearRoutes();
                             grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","car",currLoc,dest.latitude,dest.longitude,currMarker);
+                            travelMode.setText("Driving");
                             break;
                         case R.id.btn3:
-                            for(Polyline line: polyLines){
-                                line.remove();
-                            }
-                            polyLines.clear();
+                            clearRoutes();
+                            travelMode.setText(travelMode.getText().toString() + ": Cleared");
                             break;
 
                     }
@@ -221,14 +214,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-                if(actualPath.size()>0){
-                    for(Polyline line: polyLines){
-                        line.remove();
-                    }
-                    actualPath.clear();
-                    polyLines.clear();
-                    path = null;
-                }
+                clearRoutes();
                 double lat = markerMap.get(marker).getShop().getLat();
                 double lng = markerMap.get(marker).getShop().getLng();
 
@@ -447,6 +433,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         RequestGlobal.getInstance(MapsActivity.this).getRequestQueue().add(stringRequest);
 
 
+    }
+
+    public boolean clearRoutes(){
+        if(actualPath.size()>0){
+            for(Polyline line: polyLines){
+                line.remove();
+            }
+            actualPath.clear();
+            polyLines.clear();
+            path = null;
+            return true;
+        }
+        return false;
     }
 
 

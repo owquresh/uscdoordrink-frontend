@@ -4,9 +4,9 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="error_field_required">Error, field required</string>
     <string name="error_incorrect_password">Incorrect password</string>
-    <string name="distance">Distance</string>
-    <string name="duration">Duration</string>
-    <string name="shopName">Name</string>
+    <string name="distance"></string>
+    <string name="duration"></string>
+    <string name="shopName">Choose a nearby shop!</string>
 
 
     <string-array name="registerPageOptions">
