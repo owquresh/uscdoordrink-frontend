@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 sesh.setLogin(true);
                                 sesh.setEmail(getEmail.getText().toString());
                                 sesh.setType(spinnerCustomer.getSelectedItem().toString().toLowerCase());
-                                Intent loginIntent = new Intent(LoginActivity.this, DataActivity.class);
+                                Intent loginIntent = new Intent(LoginActivity.this, MapsActivity.class);
                                 startActivity(loginIntent);
 
                             }
