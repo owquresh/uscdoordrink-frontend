@@ -1,17 +1,26 @@
 package com.example.uscdoordrink;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.models.Direction;
+import com.example.models.LatLngWrapper;
+import com.example.models.MarkerModel;
 import com.example.models.Shop;
 import com.example.uscdoodrink.request.GsonGlobal;
 import com.example.uscdoodrink.request.RequestGlobal;
@@ -26,11 +35,15 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import org.w3c.dom.Text;
 import org.xml.sax.DTDHandler;
 
 import java.lang.reflect.Type;
@@ -50,12 +63,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     Executor mainExecutor;
     Session sesh;
-    private ArrayList<Shop> shopList;
     private HashMap<Integer, Marker> shopMap;
-
+    private HashMap<Marker, MarkerModel> markerMap;
     private ActivityMapsBinding binding;
     ArrayList<Shop> shops;
+    Direction path;
+    ArrayList<LatLng> actualPath;
+    ArrayList<Polyline> polyLines;
     LatLng currLoc;
+    LatLng dest;
+    Marker currMarker;
+    private Button[] btn = new Button[4];
+    private Button btn_unfocus;
+    private int[] btn_id = {R.id.btn0,R.id.btn1,R.id.btn2,R.id.btn3};
+    TextView shopName;
+    TextView shopDistance;
+    TextView shopDuration;
+
+
+
     ScheduledExecutorService backgroundExecutor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +89,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        shopName = (TextView) findViewById(R.id.shopName);
+        shopDistance = (TextView) findViewById(R.id.shopDistance);
+        shopDuration = (TextView) findViewById(R.id.shopDuration);
+
         shops = new ArrayList<Shop>();
         shopMap = new HashMap<>();
+        markerMap = new HashMap<>();
+        path = null;
+        actualPath = new ArrayList<>();
+        polyLines = new ArrayList<>();
         sesh = new Session(this);
+
+
+
+
+        for(int i=0;i<btn.length;i++){
+            btn[i] = (Button) findViewById(btn_id[i]);
+            btn[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (view.getId()){
+                        case R.id.btn0:
+                            for(Polyline line: polyLines){
+                                line.remove();
+                            }
+                            polyLines.clear();
+                            grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","walk",currLoc,dest.latitude,dest.longitude,currMarker);
+                            break;
+                        case R.id.btn1:
+                            for(Polyline line: polyLines){
+                                line.remove();
+                            }
+                            polyLines.clear();
+                            grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","bike",currLoc,dest.latitude,dest.longitude,currMarker);
+                            break;
+                        case R.id.btn2:
+                            for(Polyline line: polyLines){
+                                line.remove();
+                            }
+                            polyLines.clear();
+                            grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","car",currLoc,dest.latitude,dest.longitude,currMarker);
+                            break;
+                        case R.id.btn3:
+                            for(Polyline line: polyLines){
+                                line.remove();
+                            }
+                            polyLines.clear();
+                            break;
+
+                    }
+                }
+            });
+            btn_unfocus=btn[0];
+        }
 
         //setup main thread executor and background work thread pool
         mainExecutor = ContextCompat.getMainExecutor(this);
@@ -99,7 +176,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for(Shop shop: shops){
             LatLng location = new LatLng(shop.getLat(),shop.getLng());
             Marker marker = mMap.addMarker(new MarkerOptions().position(location).title(shop.getName()).snippet(shop.getAddress()));
+            MarkerModel model = new MarkerModel(shop.getName(), shop,shop.getId());
             shopMap.put(shop.getId(),marker);
+            markerMap.put(marker, model );
+
 
         }
 
@@ -114,33 +194,94 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currLoc,15));
         }
 
+
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Nullable
+            @Override
+            public View getInfoContents(@NonNull Marker marker) {
+                View v = getLayoutInflater().inflate(R.layout.info_window,null);
+                TextView name = v.findViewById(R.id.name);
+                TextView address = v.findViewById(R.id.address);
+
+                name.setText(marker.getTitle());
+                address.setText(markerMap.get(marker).getShop().getAddress());
+
+                return v;
+
+            }
+
+            @Nullable
+            @Override
+            public View getInfoWindow(@NonNull Marker marker) {
+                return null;
+            }
+        });
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(@NonNull Marker marker) {
-
-                if(marker.isInfoWindowShown()){
-                    marker.hideInfoWindow();
-                }else{
-                    marker.showInfoWindow();
+                if(actualPath.size()>0){
+                    for(Polyline line: polyLines){
+                        line.remove();
+                    }
+                    actualPath.clear();
+                    polyLines.clear();
+                    path = null;
                 }
+                double lat = markerMap.get(marker).getShop().getLat();
+                double lng = markerMap.get(marker).getShop().getLng();
 
-
+                currMarker = marker;
+                dest = new LatLng(lat, lng);
+                Log.d("map1","marker click test");
+                grabDirections("http://10.0.2.2:8080/USCDoorDrinkBackend/Direction","car",currLoc,lat, lng,marker);
 
                 return false;
             }
         });
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(@NonNull Marker marker) {
-                if(marker.getTitle().equals("Current Location")){
-                    Intent dataIntent = new Intent(MapsActivity.this, DataActivity.class);
-                    startActivity(dataIntent);
+
+
+    }
+
+    class DirectionThread extends Thread{
+        String response;
+        Marker marker;
+        DirectionThread(String rep, Marker mark){
+            response = new String(rep);
+            marker = mark;
+        }
+        public void run(){
+            Log.d("map1","thread  test");
+            Log.d("map1",response);
+            Type pathType = new TypeToken<Direction>(){}.getType();
+            path = GsonGlobal.getInstance().getGson().fromJson(response, pathType);
+
+
+            if(path.getPath().size() > 0){
+                for(LatLngWrapper pt: path.getPath()){
+                    LatLng value = new LatLng(pt.getLat(),pt.getLng());
+                    actualPath.add(value);
                 }
             }
-        });
 
+            mainExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
 
+                    if(path.getPath().size()>0) {
+                        PolylineOptions opts = new PolylineOptions().addAll(actualPath).color(Color.BLUE).width(5);
+                        polyLines.add(mMap.addPolyline(opts));
+
+                    }
+                    shopName.setText(marker.getTitle());
+                    shopDistance.setText(path.getDistance());
+                    shopDuration.setText(path.getDuration());
+                }
+
+            });
+        }
     }
 
 
@@ -193,6 +334,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    private void grabDirections(String url, String type, LatLng currLoc, double lat, double lng,Marker marker){
+        for(Polyline line: polyLines){
+            line.remove();
+        }
+        polyLines.clear();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+                DirectionThread thread = new DirectionThread(response,marker);
+//                currMarker = marker;
+                thread.start();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("map1",error.toString());
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+
+
+                params.put("origin_lat",Double.toString(currLoc.latitude));
+                params.put("origin_lng",Double.toString(currLoc.longitude));
+                params.put("dest_lat",Double.toString(lat));
+                params.put("dest_lng",Double.toString(lng));
+                params.put("type",type);
+
+                return params;
+            }
+        };
+        RequestGlobal.getInstance(MapsActivity.this).addToRequestQueue(stringRequest);
+    }
 
     private void grabUserData(String url){
 
